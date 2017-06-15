@@ -29,11 +29,11 @@ public class CampaignDAOImpl implements CampaignDAO {
 	
 	@Override
 	public List<Campaign> readAll(EntityManager em) {
-		Query q = em.createQuery("select c from Campaign");
+		Query q = em.createQuery("select c from Campaign c");
 		List<Campaign> res = q.getResultList();
 		return res;
 	}
-	
+
 	@Override
 	public Campaign readById(EntityManager em, long id) {
 		Query q = em.createQuery("select c from Campaign c where c.id = :id");

@@ -1,11 +1,31 @@
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
-<persistence-unit name="transactions-optional">
-<provider>org.datanucleus.api.jpa.PersistenceProviderImpl</provider>
-<class>es.dit.upm.apsv.msth.model.TFM</class>
-<properties>
-<property name="datanucleus.NontransactionalRead" value="true"/>
-<property name="datanucleus.NontransactionalWrite" value="true"/>
-<property name="datanucleus.ConnectionURL" value="appengine"/>
-</properties>
-</persistence-unit>
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+ http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+ 
+   <persistence-unit name="gmsk">
+     <description>Game Master Swiss Knife Persistence Unit</description>
+     <provider>com.objectdb.jpa.Provider</provider>
+     <class>model.Campaign</class>
+     <class>model.CampaignEq</class>
+     <class>model.CampaignLoc</class>
+     <class>model.CampaignNPC</class>
+     <class>model.CampaignPC</class>
+     <class>model.Equipment</class>
+     <class>model.Location</class>
+     <class>model.NonPlayerCharacter</class>
+     <class>model.PlayerCharacter</class>
+     <class>model.TemplateEq</class>
+     <class>model.TemplateLoc</class>
+     <class>model.TemplateNPC</class>
+     <class>model.TemplatePC</class>
+     <properties>
+       <property name="javax.persistence.jdbc.url"
+                 value="objectdb://localhost/my.odb"/>
+       <property name="javax.persistence.jdbc.user" value="admin"/>
+       <property name="javax.persistence.jdbc.password" value="admin"/>
+     </properties>
+   </persistence-unit>
+ 
 </persistence>
