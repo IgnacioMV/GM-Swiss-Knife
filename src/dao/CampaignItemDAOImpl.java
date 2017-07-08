@@ -5,10 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import model.Campaign;
 import model.CampaignItem;
-import model.ItemType;
-import model.TemplateItem;
+import model.CampaignCategory;
 
 public class CampaignItemDAOImpl implements CampaignItemDAO {
 
@@ -49,32 +47,13 @@ public class CampaignItemDAOImpl implements CampaignItemDAO {
 		}
 		return res;
 	}
-	
+		
 	@Override
-	public List<CampaignItem> readByItemType(EntityManager em, ItemType itemType) {
-		Query q = em.createQuery("select c from CampaignItem c where c.itemType = :itemType");
-		q.setParameter("itemType", itemType);
-		TemplateItem res = null;
-		List<CampaignItem> ress = q.getResultList();
-		return ress;
-	}
-	
-	@Override
-	public List<CampaignItem> readByItemTypeAndCampaign(EntityManager em, ItemType itemType, Campaign campaign) {
-		Query q = em.createQuery("select c from CampaignItem c where c.itemType = :itemType and c.campaignId = :campaignId");
-		q.setParameter("itemType", itemType);
-		q.setParameter("campaignId", campaign.getId());
-		TemplateItem res = null;
-		List<CampaignItem> ress = q.getResultList();
-		return ress;
-	}
-
-	@Override
-	public List<CampaignItem> readByCampaign(EntityManager em, Campaign campaign) {
-		Query q = em.createQuery("select c from CampaignItem c where c.campaignId = :campaignId");
-		q.setParameter("campaignId", campaign.getId());
-		List<CampaignItem> ress = q.getResultList();
-		return ress;
+	public List<CampaignItem> readAllByCategory(EntityManager em, CampaignCategory category) {
+		Query q = em.createQuery("select c from CampaignItem c where c.categoryId = :categoryId");
+		q.setParameter("categoryId", category.getId());
+		List<CampaignItem> res = q.getResultList();
+		return res;
 	}
 
 	@Override

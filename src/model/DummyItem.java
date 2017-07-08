@@ -2,6 +2,7 @@ package model;
 
 public class DummyItem implements GenericItem {
 
+	private long id;
 	private String name;
 	private ItemType itemType;
 	
@@ -33,5 +34,11 @@ public class DummyItem implements GenericItem {
 	@Override
 	public void setText(String text) {
 		this.name = text;
+	}
+
+	@Override
+	public long getId() {
+		// TODO Auto-generated method stub
+		return -1;
 	}
 }

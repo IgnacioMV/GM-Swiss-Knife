@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import model.Campaign;
 import model.CampaignItem;
+import model.CampaignCategory;
 import model.ItemType;
 import model.TemplateItem;
 
@@ -13,9 +14,7 @@ public interface CampaignItemDAO {
 	public CampaignItem createCampaignItem(EntityManager em, CampaignItem campaignItem);
     public List<CampaignItem> readAll(EntityManager em);
     public CampaignItem readById(EntityManager em, long id);
-    public List<CampaignItem> readByItemType(EntityManager em, ItemType itemType);
-    public List<CampaignItem> readByItemTypeAndCampaign(EntityManager em, ItemType itemType, Campaign campaign);
-    public List<CampaignItem> readByCampaign(EntityManager em, Campaign campaign);
+    public List<CampaignItem> readAllByCategory(EntityManager em, CampaignCategory category);
     public boolean updateCampaignItem(EntityManager em, CampaignItem campaignItem);
     public boolean deleteCampaignItem(EntityManager em, CampaignItem campaignItem);
 }

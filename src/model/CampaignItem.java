@@ -16,9 +16,7 @@ public class CampaignItem implements GenericItem {
 	private String name;
 	private String text;
 	@Enumerated(EnumType.STRING)
-	private ItemType itemType;
-	private long tEquipmentId;
-	private long campaignId;
+	private long categoryId;
 	
 	public long getId() {
 		return id;
@@ -32,23 +30,11 @@ public class CampaignItem implements GenericItem {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ItemType getItemType() {
-		return itemType;
+	public long getCategoryId() {
+		return categoryId;
 	}
-	public void setItemType(ItemType itemType) {
-		this.itemType = itemType;
-	}
-	public long gettEquipmentId() {
-		return tEquipmentId;
-	}
-	public void settEquipmentId(long tEquipmentId) {
-		this.tEquipmentId = tEquipmentId;
-	}
-	public long getCampaignId() {
-		return campaignId;
-	}
-	public void setCampaignId(long campaignId) {
-		this.campaignId = campaignId;
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
 	}
 	public void setText(String text) {
 		this.text = text;
