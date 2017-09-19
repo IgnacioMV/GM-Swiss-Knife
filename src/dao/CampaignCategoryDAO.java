@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import model.CampaignCategory;
 
 
-public interface CategoryDAO {
+public interface CampaignCategoryDAO {
 	public CampaignCategory createCategory(EntityManager em, CampaignCategory category);
     public List<CampaignCategory> readAll(EntityManager em);
     public List<CampaignCategory> readByCampaign(EntityManager em, long campaignId);

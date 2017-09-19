@@ -7,15 +7,15 @@ import javax.persistence.Query;
 
 import model.CampaignCategory;
 
-public class CategoryDAOImpl implements CategoryDAO {
+public class CampaignCategoryDAOImpl implements CampaignCategoryDAO {
 
-	private static CategoryDAOImpl instance;
-	private CategoryDAOImpl () {
+	private static CampaignCategoryDAOImpl instance;
+	private CampaignCategoryDAOImpl () {
 	}
 	
-	public static CategoryDAOImpl getInstance() {
+	public static CampaignCategoryDAOImpl getInstance() {
 		if (instance == null) {
-			instance = new CategoryDAOImpl();
+			instance = new CampaignCategoryDAOImpl();
 		}
 		return instance;
 	}

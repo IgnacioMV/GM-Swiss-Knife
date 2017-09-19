@@ -15,8 +15,7 @@ public class TemplateItem implements GenericItem {
 	private long id;
 	private String name;
 	private String text;
-	@Enumerated(EnumType.STRING)
-	private ItemType itemType;
+	private long templateCategoryId;
 	
 	public long getId() {
 		return id;
@@ -30,11 +29,11 @@ public class TemplateItem implements GenericItem {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ItemType getItemType() {
-		return itemType;
+	public long getTemplateCategoryId() {
+		return templateCategoryId;
 	}
-	public void setItemType(ItemType itemType) {
-		this.itemType = itemType;
+	public void setTemplateCategoryId(long templateCategoryId) {
+		this.templateCategoryId = templateCategoryId;
 	}
 	public void setText(String text) {
 		this.text = text;

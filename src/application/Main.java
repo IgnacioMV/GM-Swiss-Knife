@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 
 import dao.CampaignDAOImpl;
 import dao.CampaignItemDAOImpl;
-import dao.CategoryDAOImpl;
+import dao.CampaignCategoryDAOImpl;
 import dao.EMFService;
 import dao.TemplateItemDAOImpl;
 import javafx.application.Application;
@@ -25,7 +25,6 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.TreeCell;
@@ -36,14 +35,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.TextFlow;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import model.Campaign;
-import model.CampaignItem;
 import model.CampaignCategory;
+import model.CampaignItem;
 import model.DummyItem;
 import model.GenericItem;
 import model.ItemType;
@@ -61,7 +59,7 @@ public class Main extends Application {
 	private EntityManager em = EMFService.get().createEntityManager();
 
 	private CampaignDAOImpl campaigndao = CampaignDAOImpl.getInstance();
-	private CategoryDAOImpl categorydao = CategoryDAOImpl.getInstance();
+	private CampaignCategoryDAOImpl categorydao = CampaignCategoryDAOImpl.getInstance();
 	private CampaignItemDAOImpl citemdao = CampaignItemDAOImpl.getInstance();
 	private TemplateItemDAOImpl titemdao = TemplateItemDAOImpl.getInstance();
 
@@ -103,7 +101,7 @@ public class Main extends Application {
 			root.getItems().addAll(tabPane1, tabPane2);
 			root.setDividerPosition(0, 0.2f);
 
-			Scene scene = new Scene(root, 1024, 768);
+			Scene scene = new Scene(root, 640, 480);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -594,7 +592,8 @@ public class Main extends Application {
 				@Override
 				public void handle(MouseEvent t) {
 					if (t.getButton() == MouseButton.PRIMARY && t.getClickCount() == 2) {
-						if (treeItemProperty().getValue().getChildren().isEmpty() && !(treeItemProperty().getValue().getValue() instanceof CampaignCategory)) {
+						if (treeItemProperty().getValue().getValue() instanceof CampaignItem ||
+								treeItemProperty().getValue().getValue() instanceof TemplateItem) {
 
 							final HTMLEditor htmlEditor = new HTMLEditor();
 							htmlEditor.setHtmlText(getItem().getText());
@@ -610,6 +609,15 @@ public class Main extends Application {
 						        			System.out.println("ctrl + w");
 						        			tabPane2.getTabs().remove(tabPane2.getSelectionModel().getSelectedIndex());
 						        	    }
+						        		else if (kEvent.getCode() == KeyCode.TAB && kEvent.isControlDown() && kEvent.isShiftDown()) { 
+						        			System.out.println("ctrl + TAB");
+						        			tabPane2.getSelectionModel().selectPrevious();
+						        	    }
+						        		else if (kEvent.getCode() == KeyCode.TAB && kEvent.isControlDown()) { 
+						        			System.out.println("ctrl + TAB");
+						        			tabPane2.getSelectionModel().selectNext();
+						        	    }
+						        		
 						        	}
 						        	
 						        	int autosaveDelay = 500; //Milliseconds
